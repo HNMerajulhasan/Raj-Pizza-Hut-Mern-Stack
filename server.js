@@ -6,19 +6,19 @@ const connectDB = require("./config/config");
 require("colors");
 const morgan = require("morgan");
 
-//config dotenv
+//config dotenv setup
 dotenv.config();
 
-//connection mongodb
+//connection mongodb setup
 connectDB();
 
 const app = express();
 
-//middlewares
+//middlewares setup
 app.use(express.json());
 app.use(morgan("dev"));
 
-//route
+//route setup
 app.use("/api/pizzas", require("./routes/pizzaRoute"));
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/orders", require("./routes/orderRoute"));
