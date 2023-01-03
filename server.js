@@ -23,16 +23,11 @@ app.use("/api/pizzas", require("./routes/pizzaRoute"));
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/orders", require("./routes/orderRoute"));
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/Pizza_Client/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "Pizza_Client", "build", "index.html"));
-  });
-} else {
-  app.get("/", (req, res) => {
-    res.send("<h1>Hello From Node Server vai nodemon</h1>");
-  });
-}
+//static files
+app.use(express.static(path.join(__dirname, "/Pizza_Client/build")));
+app.get("*", function(req, res) {
+      res.sendFile(path.join(__dirname, "Pizza_Client", "build", "index.html"));
+});
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
